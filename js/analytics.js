@@ -14,7 +14,7 @@ setTimeout(function () {
 
 function TV_step2() {
     console.log('User-ID:', TV_User.id);
-    TV_iframe('http://throughview.local/tv/embed/?r=' + encodeURIComponent(document.location.href) + '&u=' + TV_User.id);
+    TV_view();
 }
 
 window.TV = {
@@ -35,4 +35,11 @@ function TV_iframe(url) {
     iframe.setAttribute('src', url);
     iframe.setAttribute('style', 'border:0;height:0;width:0;overflow:hidden;padding:0;margin:0;opacity:0.1;position:absolute;float:left;z-index:-10;');
     document.body.appendChild(iframe);
+    return iframe;
+}
+function TV_view() {
+    var iframe = TV_iframe('http://throughview.local/tv/embed/?r=' + encodeURIComponent(document.location.href) + '&u=' + TV_User.id);
+    setTimeout(function () {
+        iframe.parentNode.removeChild(iframe);
+    }, 500);
 }

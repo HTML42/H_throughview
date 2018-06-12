@@ -12,9 +12,9 @@ class Request {
 
     public static function init() {
         if (isset($_GET['r'])) {
-            self::$url == trim($_GET['r']);
+            self::$url = trim($_GET['r']);
         } else if (isset($_SERVER['HTTP_REFERER'])) {
-            self::$url == $_SERVER['HTTP_REFERER'];
+            self::$url = $_SERVER['HTTP_REFERER'];
         }
         if (isset($_SERVER['HTTP_REFERER'])) {
             self::$referer_base = $_SERVER['HTTP_REFERER'];
@@ -29,9 +29,9 @@ class Request {
         //
         $without_protocol = @end(explode('://', self::$url_base));
         self::$domain = (strstr($without_protocol, '/') ? @reset(explode('/', $without_protocol)) : $without_protocol);
-        self::$rootdomain = array_slice(explode('.', self::$domain), -2);
+        self::$rootdomain = implode('.', array_slice(explode('.', self::$domain), -2));
         if (in_array(self::$rootdomain, array('co.uk'))) {
-            self::$rootdomain = array_slice(explode('.', self::$domain), -3);
+            self::$rootdomain = implode('.', array_slice(explode('.', self::$domain), -3));
         }
         //
         if (strstr(self::$url_base, 'https://')) {
@@ -40,5 +40,3 @@ class Request {
     }
 
 }
-
-Request::init();

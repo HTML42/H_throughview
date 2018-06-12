@@ -41,5 +41,5 @@ function TV_view() {
     var iframe = TV_iframe('http://throughview.local/tv/embed/?r=' + encodeURIComponent(document.location.href) + '&u=' + TV_User.id);
     setTimeout(function () {
         iframe.parentNode.removeChild(iframe);
-    }, 500);
+    }, 2000);
 }

@@ -4,7 +4,9 @@ var config = {
     ],
     js: {
         "startup": [
-            'js/analytics.js'
+            'js/functions.js',
+            'js/analytics.js',
+            'js/user.js'
         ]
     }
 };

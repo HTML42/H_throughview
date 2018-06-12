@@ -1,6 +1,6 @@
 <?php
 
-include '_embed_bootstrap.php';
+include '../lib/bootstrap.php';
 
 //
 

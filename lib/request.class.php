@@ -27,16 +27,23 @@ class Request {
             self::$url_match = (self::$url_base == self::$referer_base);
         }
         //
-        $without_protocol = @end(explode('://', self::$url_base));
-        self::$domain = (strstr($without_protocol, '/') ? @reset(explode('/', $without_protocol)) : $without_protocol);
-        self::$rootdomain = implode('.', array_slice(explode('.', self::$domain), -2));
-        if (in_array(self::$rootdomain, array('co.uk'))) {
-            self::$rootdomain = implode('.', array_slice(explode('.', self::$domain), -3));
-        }
+        $domain_rootdomain = self::_domain(self::$url_base);
+        self::$domain = $domain_rootdomain[0];
+        self::$rootdomain = $domain_rootdomain[1];
         //
         if (strstr(self::$url_base, 'https://')) {
             self::$ssl = true;
         }
+    }
+    
+    public static function _domain($url) {
+        $without_protocol = @end(explode('://', $url));
+        $_domain = (strstr($without_protocol, '/') ? @reset(explode('/', $without_protocol)) : $without_protocol);
+        $_rootdomain = implode('.', array_slice(explode('.', $_domain), -2));
+        if (in_array($_rootdomain, array('co.uk'))) {
+            $_rootdomain = implode('.', array_slice(explode('.', $_domain), -3));
+        }
+        return array($_domain, $_rootdomain);
     }
 
 }

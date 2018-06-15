@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DEMO - Index</title>
+        <title>DEMO - Event</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Page 2</h1>
+        <h1>Page with Event</h1>
+        <div style="padding: 50px 100px; background-color: #EEE;">
+            <button data-tv-event="Event-Auto">Automated Throughview-Event</button>
+            <br/><br/><br/>
+            <button onclick="TV_event('Event-Manual');">Manual Throughview-Event</button>
+        </div>
         <ul>
             <li><a href="index.html">Index</a></li>
-            <li><a href="page_event.html">Page Event</a></li>
+            <li><a href="page2.html">Page 2</a></li>
             <li><a href="target.html">Target-Page</a></li>
         </ul>
         <script src="http://throughview.local/tv/assets/js/startup.js" async></script>

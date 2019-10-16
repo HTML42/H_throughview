@@ -7,6 +7,11 @@ var config = {
             'js/functions.js',
             'js/analytics.js',
             'js/user.js'
+        ],
+        "admin": [
+            'js/jquery.js',
+            'js/functions.js',
+            'js/admin.js'
         ]
     }
 };
@@ -81,33 +86,33 @@ gulp.task('images', function () {
 });
 gulp.task('less', function () {
     var set, index, file_name;
-    for(index in config.css) {
+    for (index in config.css) {
         set = config.css[index];
         file_name = index + '.css';
         gulp.src(set)
-            .pipe(concat(file_name))
-            .pipe(sourcemaps.init())
-            .pipe(less())
-            .pipe(base64({
-                baseDir: 'assets/images/',
-                maxImageSize: 10 * 1024
-            }))
-            .pipe(sourcemaps.write())
-            .pipe(autoprefixer(["last 8 version", "> 1%", "ie 8", "ie 7"]), {cascade: true})
-            .pipe(gulp.dest('./assets/css/'));
+                .pipe(concat(file_name))
+                .pipe(sourcemaps.init())
+                .pipe(less())
+                .pipe(base64({
+                    baseDir: 'assets/images/',
+                    maxImageSize: 10 * 1024
+                }))
+                .pipe(sourcemaps.write())
+                .pipe(autoprefixer(["last 8 version", "> 1%", "ie 8", "ie 7"]), {cascade: true})
+                .pipe(gulp.dest('./assets/css/'));
     }
     return true;
 });
 gulp.task('js', function () {
     var set, index, file_name;
-    for(index in config.js) {
+    for (index in config.js) {
         set = config.js[index];
         file_name = index + '.js';
         gulp.src(set)
-            .pipe(sourcemaps.init())
-            .pipe(concat(file_name))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./assets/js/'));
+                .pipe(sourcemaps.init())
+                .pipe(concat(file_name))
+                .pipe(sourcemaps.write())
+                .pipe(gulp.dest('./assets/js/'));
     }
     return true;
 });
@@ -133,8 +138,10 @@ gulp.task('build2', ['images'], function () {
     gulp.start('build3');
 });
 gulp.task('build3', ['less', 'js'], function () {
-    gulp.start('css-min');
-    gulp.start('js-min');
+    setTimeout(function () {
+        gulp.start('css-min');
+        gulp.start('js-min');
+    }, 3000);
 });
 gulp.task('watch', ['watch-less', 'watch-js', 'watch-images'], function () {
     console.log('Watching LESS, JS, Images');

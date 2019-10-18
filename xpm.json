@@ -1,0 +1,11 @@
+{
+    "name": "Xtreme3-Demo",
+    "key": "1234qwer",
+    "packages": {
+        "1": "xtreme_core",
+        "1.5": "xtreme_min",
+        "2": "xtreme_db",
+        "3": "xtreme_login",
+        "4": "jquery"
+    }
+}

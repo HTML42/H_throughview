@@ -1,0 +1,41 @@
+{
+    "": {
+        "301": "index.html"
+    },
+
+    "index.html": {},
+    "login.html": {},
+    "dbtest.html": {},
+    "ajax/db_reset.php": {
+        "mode": "ajax"
+    },
+
+    /* assets */
+    "styles.css": {
+        "mode": "css",
+        "files": [
+            "xpm/library/xtreme_core/less/x_mixins.less",
+            "xpm/library/xtreme_core/less/x_variables.less",
+            "xpm/library/xtreme_core/less/x_basics.less",
+            "xpm/library/xtreme_login/less/*.less",
+            "less/project.less",
+            "pack.jquery.css"
+        ]
+    },
+    "script.js": {
+        "mode": "js",
+        "files": [
+            "js/*.js",
+            "js/xtreme.js",
+            "js/xlogin.js",
+            "js/login_events.js",
+            "pack.jquery.js"
+        ]
+    },
+
+    /* Default */
+    "_default": {
+        "title": "Xtreme 3 Demo",
+        "description": "Xtreme 3 Demo Website, using XPM"
+    }
+}

@@ -64,3 +64,5 @@ Xlogin::$config['confirmation']['redirect_text'] = 'Sie werden weitergeleitet in
 
 //Tinypng
 TinyPng::$api_key = 'biozpeZLIExCfyai9UWcKgXnX0v0JmfO';
+
+include PROJECT_ROOT . 'hooks/_tv_init.php';

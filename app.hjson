@@ -9,6 +9,15 @@
     "ajax/db_reset.php": {
         "mode": "ajax"
     },
+    /* Embed Scripts */
+    "embed/check.js": {
+        "mode": "js",
+        "files": [
+            "pages/embed/check.php"
+        ]
+    },
+    /* Demo Scripts */
+    "demo/index.html": {},
 
     /* assets */
     "styles.css": {
@@ -30,6 +39,12 @@
             "js/xlogin.js",
             "js/login_events.js",
             "pack.jquery.js"
+        ]
+    },
+    "embed/tv.js": {
+        "mode": "js",
+        "files": [
+            "js/embed/*.js"
         ]
     },
 

@@ -1,6 +1,6 @@
 <?php
 
-define('FINGERPRINT', sha1($_SERVER['HTTP_USER_AGENT'] . user_ip()));
+define('FINGERPRINT', sha1(user_agent_browser() . user_ip_hash()));
 define('FINGERPRINT_FOLDERPATH', '../tmp/' . substr(FINGERPRINT, 0, 4) . '/');
 define('FINGERPRINT_FILEPATH', FINGERPRINT_FOLDERPATH . FINGERPRINT);
 define('SERVER_USERID', check_for_userid());
@@ -15,8 +15,42 @@ include 'tracking.class.php';
 Request::init();
 define('FILE_DATA_WEBSITE', '../data/websites/' . str_replace('.', '_', Request::$rootdomain) . '.json.zip');
 
-function user_ip() {
-    return $_SERVER['REMOTE_ADDR'];
+function user_ip_raw() {
+    return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+}
+
+function user_ip_hash() {
+    $ip = user_ip_raw();
+    if (!is_string($ip) || $ip === '') {
+        return null;
+    }
+    return hash('sha256', $ip);
+}
+
+function user_agent_browser() {
+    $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    if (!is_string($ua) || $ua === '') {
+        return 'Unknown';
+    }
+    if (stripos($ua, 'Edg/') !== false) {
+        return 'Edge';
+    }
+    if (stripos($ua, 'OPR/') !== false || stripos($ua, 'Opera') !== false) {
+        return 'Opera';
+    }
+    if (stripos($ua, 'Chrome') !== false && stripos($ua, 'Chromium') === false) {
+        return 'Chrome';
+    }
+    if (stripos($ua, 'Safari') !== false && stripos($ua, 'Chrome') === false) {
+        return 'Safari';
+    }
+    if (stripos($ua, 'Firefox') !== false) {
+        return 'Firefox';
+    }
+    if (stripos($ua, 'MSIE') !== false || stripos($ua, 'Trident/') !== false) {
+        return 'Internet Explorer';
+    }
+    return 'Other';
 }
 
 function save_fingerprint($userid) {

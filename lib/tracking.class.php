@@ -72,8 +72,8 @@ class Tracking {
             'ssl' => Request::$ssl,
             'userid' => USERID,
             'userid_match' => USERID_MATCH,
-            'ip' => user_ip(),
-            'useragent' => $_SERVER['HTTP_USER_AGENT']
+            'ip' => user_ip_hash(),
+            'useragent' => user_agent_browser()
         );
     }
 
